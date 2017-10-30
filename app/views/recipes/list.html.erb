@@ -1,0 +1,13 @@
+<h1>Gobbler</h1>
+<%= form_tag(list_recipes_path, method: :get) do %>
+  <%= text_field_tag :search, nil, placeholder: "Search here..." %>
+  <%= submit_tag("Search") %>
+<% end %>
+<ul>
+  <% @recipes.each do |recipe| %>
+    <li>
+      <img alt="#{recipe.name}" src="#{recipe.image_url}" />
+      <%= recipe.name %>
+    </li>
+  <% end %>
+</ul>
