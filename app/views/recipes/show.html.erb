@@ -1,2 +1,13 @@
-<%= @recipe.name %>
-<%= @recipe.dietary %>
+<h1><%= @recipe.name %></h1>
+<img src="<%= @recipe.image_url %>" alt="<%= @recipe.name %>" />
+<%= link_to "Original post", @recipe.original_link, target: "_blank" %>
+<ul>
+  <% @recipe.ingredients.each do |ingredient| %>
+    <li><%= ingredient %></li>
+  <% end %>
+</ul>
+<ul>
+  <% @recipe.dietary.each do |line| %>
+  <li><%= line %></li>
+  <% end %>
+</ul>
