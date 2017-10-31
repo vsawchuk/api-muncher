@@ -1,7 +1,6 @@
-<h1>Gobbler</h1>
 <%= render partial: 'search' %>
 <% if @count %>
-  <p><%= @count %> Results for: "<%= @search %>"</p>
+  <h1><%= @count %> Results for: "<%= @search %>"</h1>
 <% end %>
 <%= link_to "First", index_recipes_path({search: @search, page: 1}) %>
 <% (@min_page..@max_page).to_a.each do |page| %>

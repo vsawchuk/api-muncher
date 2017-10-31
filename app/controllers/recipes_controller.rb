@@ -4,7 +4,7 @@ class RecipesController < ApplicationController
 
   def index
     @search = params[:search] || ""
-    @page = params[:page].to_i || 1
+    @page = (params[:page].to_i > 0) ? params[:page].to_i : 1
     recipe_hash = ApiWrapper.list_recipes(@search, @page)
     @recipes = recipe_hash[:recipes]
     @count = (recipe_hash[:count] > 100) ? 100 : recipe_hash[:count]
