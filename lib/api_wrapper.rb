@@ -18,6 +18,15 @@ class ApiWrapper
     return recipe_list
   end
 
+  def self.find_recipe(recipe)
+    url = BASE_URL + "/search?q=#{recipe}&app_id=#{APP_ID}&app_key=#{APP_KEY}"
+    data = HTTParty.get(url).parsed_response
+    if data["hits"]
+      return shown_recipe(data["hits"].first)
+    end
+    return nil
+  end
+
   private
 
   def self.indexed_recipe(api_params)
@@ -26,6 +35,19 @@ class ApiWrapper
       {
         image: api_params["recipe"]["image"]
       }
+    )
+  end
+
+  def self.shown_recipe(api_params)
+    return ShownRecipe.new(
+      api_params["recipe"]["label"],
+      api_params["recipe"]["url"],
+      api_params["recipe"]["ingredientLines"],
+      api_params["recipe"]["totalNutrients"],
+      {
+        image: api_params["recipe"]["image"]
+      }
+
     )
   end
 end
