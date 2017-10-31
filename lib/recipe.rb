@@ -1,4 +1,4 @@
-class ShownRecipe
+class Recipe
   STOCK_URL = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
   attr_reader :name, :original_link, :ingredients, :dietary, :image_url
 

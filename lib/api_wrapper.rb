@@ -12,7 +12,7 @@ class ApiWrapper
     recipe_list = []
     if data["hits"]
       data["hits"].each do |recipe_data|
-        recipe_list << indexed_recipe(recipe_data)
+        recipe_list << new_recipe(recipe_data)
       end
     end
     return {recipes: recipe_list, count: data["count"]}
@@ -22,7 +22,7 @@ class ApiWrapper
     url = BASE_URL + "/search?q=#{recipe}&app_id=#{APP_ID}&app_key=#{APP_KEY}"
     data = HTTParty.get(url).parsed_response
     if data["hits"]
-      return shown_recipe(data["hits"].first)
+      return new_recipe(data["hits"].first)
     else
       return nil
     end
@@ -30,17 +30,8 @@ class ApiWrapper
 
   private
 
-  def self.indexed_recipe(api_params)
-    return IndexedRecipe.new(
-      api_params["recipe"]["label"],
-      {
-        image: api_params["recipe"]["image"]
-      }
-    )
-  end
-
-  def self.shown_recipe(api_params)
-    return ShownRecipe.new(
+  def self.new_recipe(api_params)
+    return Recipe.new(
       api_params["recipe"]["label"],
       api_params["recipe"]["url"],
       api_params["recipe"]["ingredientLines"],
