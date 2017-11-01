@@ -1,1 +1,13 @@
-<%= render partial: 'search' %>
+<section class="homelogin">
+  <% if @user %>
+    <a class="logout button" href="<%= logout_path %>">Log out</a>
+  <% else %>
+    <a href="/auth/google_oauth2" class="google"><%= image_tag "/assets/google2x/btn_google_signin_dark_normal_web@2x.png", alt: "Sign in with Google", class: "login" %></a>
+  <% end %>
+</section>
+<section class="homecontent">
+  <h1>Gobbler</h1>
+  <div class="homepage">
+    <%= render partial: 'search' %>
+  </div>
+</section>

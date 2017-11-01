@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
   def homepage
+    @title = "Home"
   end
 
   def index
@@ -9,10 +10,12 @@ class RecipesController < ApplicationController
     @recipes = recipe_hash[:recipes]
     @count = (recipe_hash[:count] > 100) ? 100 : recipe_hash[:count]
     set_pages(@page, @count)
+    @title = "Search"
   end
 
   def show
     @recipe = ApiWrapper.find_recipe(params[:uri])
+    @title = "Recipe"
     unless @recipe
       flash[:status] = :error
       flash[:result] = "Please try another recipe"

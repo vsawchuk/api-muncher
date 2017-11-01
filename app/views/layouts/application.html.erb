@@ -3,40 +3,52 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+    <%= favicon_link_tag %>
+    <title>
+      <% if @title %>
+        Gobbler | <%= @title %>
+      <% else %>
+        Gobbler
+      <% end %>
+    </title>
     <script src="https://developer.edamam.com/attribution/badge.js"></script>
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
 
-  <body>
-    <header>
-      <h2><%= link_to "Gobbler", root_path %></h2>
-      <% if @user %>
-        <a href="<%= logout_path %>">Log out</a>
-      <% else %>
-        <a href="/auth/google_oauth2"><%= image_tag "/assets/google2x/btn_google_signin_dark_normal_web@2x.png", alt: "Sign in with Google" %></a>
-      <% end %>
-    </header>
-    <% if flash[:result] or flash[:messages] %>
-      <section class="row status <%= flash[:status] %>">
-        <h3><%= flash[:status] == :failure ? "A problem occurred: " : "" %><%= flash[:result] %></h3>
-        <% if flash[:messages] %>
-          <ul>
-            <% flash[:messages].each do |name, problems| %>
-              <% problems.each do |problem| %>
-                <li><%= name %>: <%= problem %></li>
+  <body class="<%= @title.downcase %>">
+    <div class="wrapper">
+      <header class="row">
+        <h2 class="columns small-6"><%= link_to "Gobbler", root_path %></h2>
+        <div class="columns small-6">
+          <% if @user %>
+            <a class="logout button float-right" href="<%= logout_path %>">Log out</a>
+          <% else %>
+            <a href="/auth/google_oauth2" class="float-right google"><%= image_tag "/assets/google2x/btn_google_signin_dark_normal_web@2x.png", alt: "Sign in with Google", class: "login" %></a>
+          <% end %>
+        </div>
+      </header>
+      <% if flash[:result] or flash[:messages] %>
+        <section class="row status <%= flash[:status] %>">
+          <h3><%= flash[:status] == :failure ? "A problem occurred: " : "" %><%= flash[:result] %></h3>
+          <% if flash[:messages] %>
+            <ul>
+              <% flash[:messages].each do |name, problems| %>
+                <% problems.each do |problem| %>
+                  <li><%= name %>: <%= problem %></li>
+                <% end %>
               <% end %>
-            <% end %>
-          </ul>
-        <% end %>
-      </section>
-    <% end %>
-    <%= yield %>
-    <footer>
-      <div id="edamam-badge" data-color="transparent"></div>
-    </footer>
+            </ul>
+          <% end %>
+        </section>
+      <% end %>
+      <div class="row content">
+        <%= yield %>
+      </div>
+      <footer class="text-left">
+        <div id="edamam-badge" data-color="transparent"></div>
+      </footer>
+    </div>
   </body>
 </html>

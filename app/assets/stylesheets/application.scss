@@ -16,5 +16,72 @@
 
  */
 html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
   min-height: 100%;
+  position: relative;
+}
+
+.content {
+  height: 100%;
+  padding-bottom: 50px;
+}
+
+footer {
+  bottom: 0;
+  height: 50px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.row {
+  width: 100%;
+}
+
+a {
+  .login, .logout {
+    width: 10em;
+  }
+  .login {
+
+  }
+  .logout {
+    border-radius: 2px;
+    height: 2em;
+  }
+}
+
+.half_width {
+  margin: auto;
+  width: 50%;
+}
+
+.home {
+  align-items: center;
+  background-image: url('/assets/turkey-dinner-setting_4460x4460.jpg');
+  background-position: 53% 0%;
+  background-repeat: none;
+  background-size: cover;
+  padding-top: 30vh;
+  text-align: center;
+  header {
+    display: none;
+  }
+  .homelogin {
+    position: fixed;
+    top: 1em;
+    right: 1em;
+  }
+  .homecontent {
+    .searchbox {
+      border-radius: 2px;
+      margin-bottom: 0.5em;
+      text-align: center;
+    }
+  }
 }
