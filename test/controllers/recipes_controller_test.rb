@@ -34,7 +34,8 @@ describe RecipesController do
   describe "show" do
     it "succeeds with a valid search" do
       VCR.use_cassette("recipes_controller_show") do
-        get show_recipe_path("Chicken Vesuvio")
+        valid_uri = "http://wwwdotreplaceedamamdotreplacecom/ontologies/edamamdotreplaceowl%23recipe_b79327d05b8e5b838ad6cfd9576b30b6"
+        get show_recipe_path(valid_uri)
         must_respond_with :success
       end
     end

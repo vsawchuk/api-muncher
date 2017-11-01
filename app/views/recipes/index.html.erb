@@ -15,7 +15,7 @@
   <% @recipes.each do |recipe| %>
     <li>
       <img alt="<%= recipe.name %>" src="<%= recipe.image_url %>" />
-      <%= link_to recipe.name, show_recipe_path(recipe.name) %>
+      <%= link_to recipe.name, show_recipe_path(recipe.uri.gsub(/\./, 'dotreplace')) %>
     </li>
   <% end %>
 </ul>

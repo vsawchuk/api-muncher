@@ -12,8 +12,7 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @recipe = ApiWrapper.find_recipe(params[:recipe])
-    puts @recipe
+    @recipe = ApiWrapper.find_recipe(params[:uri])
     unless @recipe
       flash[:status] = :error
       flash[:result] = "Please try another recipe"
