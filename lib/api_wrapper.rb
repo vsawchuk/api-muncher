@@ -6,8 +6,8 @@ class ApiWrapper
   APP_ID = ENV["EDAMAM_APPLICATION_ID"]
   APP_KEY = ENV["EDAMAM_APPLICATION_KEY"]
 
-  def self.list_recipes(search, page=1)
-    url = BASE_URL + "/search?q=#{search}&app_id=#{APP_ID}&app_key=#{APP_KEY}&from=#{(page - 1) * 10}"
+  def self.list_recipes(search, page=1, id=APP_ID, key=APP_KEY)
+    url = BASE_URL + "/search?q=#{search}&app_id=#{id}&app_key=#{key}&from=#{(page - 1) * 10}"
     data = HTTParty.get(url).parsed_response
     recipe_list = []
     if data["hits"]
@@ -15,14 +15,15 @@ class ApiWrapper
         recipe_list << new_recipe(recipe_data)
       end
     end
-    return {recipes: recipe_list, count: data["count"]}
+    count = data["count"] || 0
+    return {recipes: recipe_list, count: count}
   end
 
-  def self.find_recipe(recipe)
-    url = BASE_URL + "/search?q=#{recipe}&app_id=#{APP_ID}&app_key=#{APP_KEY}"
+  def self.find_recipe(recipe, id=APP_ID, key=APP_KEY)
+    url = BASE_URL + "/search?q=#{recipe}&app_id=#{id}&app_key=#{key}"
     data = HTTParty.get(url).parsed_response
     if data["hits"]
-      return new_recipe(data["hits"].first)
+      return new_recipe(data["hits"].first) if data["hits"].length > 0
     else
       return nil
     end
