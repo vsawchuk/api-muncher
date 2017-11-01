@@ -24,9 +24,8 @@ class ApiWrapper
     data = HTTParty.get(url).parsed_response
     if data["hits"]
       return new_recipe(data["hits"].first) if data["hits"].length > 0
-    else
-      return nil
     end
+    return nil
   end
 
   private

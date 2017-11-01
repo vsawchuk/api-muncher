@@ -67,4 +67,6 @@ end
 group :test do
   gem 'minitest-rails'
   gem 'minitest-reporters'
+  require 'minitest/autorun'
+  require 'minitest/spec'
 end

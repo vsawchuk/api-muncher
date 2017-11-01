@@ -13,6 +13,12 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = ApiWrapper.find_recipe(params[:recipe])
+    puts @recipe
+    unless @recipe
+      flash[:status] = :error
+      flash[:result] = "Please try another recipe"
+      redirect_to index_recipes_path(params[:recipe])
+    end
   end
 
   private
