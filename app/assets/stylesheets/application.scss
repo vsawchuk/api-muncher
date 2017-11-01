@@ -31,6 +31,20 @@ html, body {
   padding-bottom: 50px;
 }
 
+header {
+  margin-bottom: 1rem;
+  .logo {
+    padding-left: 1rem;
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  .login, .logout {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+  }
+}
+
 footer {
   bottom: 0;
   height: 50px;
@@ -40,7 +54,7 @@ footer {
 }
 
 .row {
-  width: 100%;
+  min-width: 100%;
 }
 
 a {
@@ -57,8 +71,11 @@ a {
 }
 
 .half_width {
-  margin: auto;
   width: 50%;
+}
+
+.searchbox {
+  border-radius: 2px;
 }
 
 .home {
@@ -74,14 +91,25 @@ a {
   }
   .homelogin {
     position: fixed;
-    top: 1em;
-    right: 1em;
+    top: 1rem;
+    right: 1rem;
   }
   .homecontent {
     .searchbox {
-      border-radius: 2px;
-      margin-bottom: 0.5em;
+      margin: 0.5em auto;
       text-align: center;
     }
+  }
+}
+
+.search {
+  .searchbox {
+    display: inline-block;
+  }
+  .column:last-child:not(:first-child), .columns:last-child:not(:first-child) {
+    float: left;
+  }
+  .product-card {
+    margin-top: 1rem;
   }
 }
