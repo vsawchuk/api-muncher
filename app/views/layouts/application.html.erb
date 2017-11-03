@@ -12,6 +12,7 @@
       <% end %>
     </title>
     <script src="https://developer.edamam.com/attribution/badge.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Mr+Dafoe|Source+Sans+Pro" rel="stylesheet">
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
@@ -27,6 +28,9 @@
           <% else %>
             <a href="/auth/google_oauth2" class="float-right google"><%= image_tag "/assets/google2x/btn_google_signin_dark_normal_web@2x.png", alt: "Sign in with Google", class: "login" %></a>
           <% end %>
+        </div>
+        <div class="clear vertical-align text-center">
+          <%= render partial: 'search' %>
         </div>
       </header>
       <% if flash[:result] or flash[:messages] %>

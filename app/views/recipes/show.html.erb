@@ -1,13 +1,23 @@
-<h1><%= @recipe.name %></h1>
-<img src="<%= @recipe.image_url %>" alt="<%= @recipe.name %>" />
-<%= link_to "Original post", @recipe.original_link, target: "_blank" %>
-<ul>
-  <% @recipe.ingredients.each do |ingredient| %>
-    <li><%= ingredient %></li>
-  <% end %>
-</ul>
-<ul>
-  <% @recipe.dietary.each do |line| %>
-  <li><%= line %></li>
-  <% end %>
-</ul>
+<h1 class="text-center"><%= @recipe.name %></h1>
+<h4 class="text-center">By <%= link_to @recipe.source, @recipe.original_link, target: "_blank" %></h4>
+<section class="imageingredients">
+  <section class="text-center columns small-12 medium-6 large-4">
+    <img src="<%= @recipe.image_url %>" alt="<%= @recipe.name %>" />
+  </section>
+  <div class="columns small-12 medium-6 large-8">
+    <h4>Ingredients</h4>
+    <ul>
+      <% @recipe.ingredients.each do |ingredient| %>
+        <li><%= ingredient %></li>
+      <% end %>
+    </ul>
+  </div>
+</section>
+<section class="columns small-12">
+  <h4>Dietary Information</h4>
+  <ul>
+    <% @recipe.dietary.each do |line| %>
+    <li><%= line[1]["label"] %>: <%= '%.2f' % line[1]["quantity"] %> <%= line[1]["unit"]%></li>
+    <% end %>
+  </ul>
+</section>

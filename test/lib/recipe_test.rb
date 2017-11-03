@@ -10,7 +10,7 @@ describe Recipe do
   end
 
   it "can be created" do
-    my_recipe = Recipe.new("uri", "name", "link", ["ingredients"], ["dietary info"])
+    my_recipe = Recipe.new("uri", "name", "link", ["ingredients"], ["dietary info"], "source")
     my_recipe.must_respond_to :uri
     my_recipe.must_respond_to :name
     my_recipe.must_respond_to :original_link

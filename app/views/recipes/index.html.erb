@@ -1,34 +1,15 @@
-<%= render partial: 'search' %>
 <% if @count %>
-  <h1><%= @count %> Results for: "<%= @search %>"</h1>
+  <h1 class="text-center"><%= @count %> Results for: "<%= @search %>"</h1>
 <% end %>
-<div class="pages text-center" %>
-  <%= link_to "First", index_recipes_path({search: @search, page: 1}) %>
-  <% (@min_page..@max_page).to_a.each do |page| %>
-    <% if page == @page %>
-      <span><%= page %></span>
-    <% else %>
-      <%= link_to page, index_recipes_path({search: @search, page: page}) %>
+<% if @count > 0 %>
+  <%= render partial: 'pagination' %>
+  <div class='recipes'>
+    <% @recipes.each do |recipe| %>
+      <article class='product-card text-center columns small-12 medium-6 large-3'>
+        <img alt="<%= recipe.name %>" src="<%= recipe.image_url %>" />
+        <h6><%= link_to recipe.name, show_recipe_path(recipe.uri.gsub(/\./, 'dotreplace')) %></h4>
+      </article>
     <% end %>
-  <% end %>
-  <%= link_to "Last", index_recipes_path({search: @search, page: @last_page}) %>
-</div>
-<div class='recipes'>
-  <% @recipes.each do |recipe| %>
-    <article class='product-card columns small-12 medium-6 large-3'>
-      <img alt="<%= recipe.name %>" src="<%= recipe.image_url %>" />
-      <h6><%= link_to recipe.name, show_recipe_path(recipe.uri.gsub(/\./, 'dotreplace')) %></h4>
-    </article>
-  <% end %>
-</div>
-<div class="pages text-center" %>
-  <%= link_to "First", index_recipes_path({search: @search, page: 1}) %>
-  <% (@min_page..@max_page).to_a.each do |page| %>
-    <% if page == @page %>
-      <span><%= page %></span>
-    <% else %>
-      <%= link_to page, index_recipes_path({search: @search, page: page}) %>
-    <% end %>
-  <% end %>
-  <%= link_to "Last", index_recipes_path({search: @search, page: @last_page}) %>
-</div>
+  </div>
+  <%= render partial: 'pagination' %>
+<% end %>

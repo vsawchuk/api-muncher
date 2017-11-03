@@ -15,10 +15,35 @@
 //= require foundation_and_overrides
 
  */
+
+$pearl-bush: rgb(235, 227, 217);
+$pearl-bush-less-opacity: rgba(235, 227, 217, 0.7);
+$pearl-bush-least-opacity: rgba(235, 227, 217, 0.1);
+
+$grain-brown: rgb(224, 205, 175);
+
+$gimblet: rgb(194, 188, 116);
+
+$pinecone: rgb(110, 97, 90);
+$pinecone-least-opacity: rgba(110, 97, 90, 0.1);
+
+$jumbo: rgb(128, 126, 130);
+
+$silver: rgb(184, 184, 184);
+
 html, body {
+  color: $pinecone;
   height: 100%;
   margin: 0;
   padding: 0;
+}
+
+body {
+  background-color: $pearl-bush-least-opacity;
+}
+
+html, body, div, section, h1, h2, h3, h4, h5, h6, p, a {
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 .wrapper {
@@ -28,29 +53,78 @@ html, body {
 
 .content {
   height: 100%;
-  padding-bottom: 50px;
+  padding-bottom: 90px;
+}
+
+.button {
+  font-family: 'Mr Dafoe', cursive;
 }
 
 header {
+  background: linear-gradient(120deg, $pearl-bush-less-opacity, $pearl-bush);
   margin-bottom: 1rem;
+  min-height: 25vh;
   .logo {
+    font-size: 4em;
     padding-left: 1rem;
-    padding-top: 1rem;
     margin-bottom: 1rem;
+    a {
+      font-family: 'Mr Dafoe', cursive;
+    }
   }
   .login, .logout {
     position: absolute;
     right: 1rem;
     top: 1rem;
   }
+  .searchbox {
+    display: inline-block;
+  }
+  .clear {
+    clear: both;
+  }
+  .vertical-align * {
+    margin-top: 15px;
+    margin-bottom: 0;
+    vertical-align: bottom;
+  }
+  .button {
+    background-color: $pinecone;
+    color: $pearl-bush;
+    &:hover {
+      background-color: $jumbo;
+      color: $pearl-bush;
+    }
+    &:active {
+      background-color: $silver;
+      color: $pinecone;
+    }
+    &:focus {
+      background-color: $silver;
+      color: $pinecone;
+      outline-color: $jumbo;
+    }
+  }
 }
 
 footer {
+  background: linear-gradient(120deg, $pearl-bush-less-opacity, $pearl-bush);
   bottom: 0;
-  height: 50px;
+  height: 80px;
+  line-height: 80px;
   left: 0;
   position: absolute;
   width: 100%;
+}
+
+a {
+  color: $pinecone;
+  &:hover {
+    color: $silver;
+  }
+  &:active {
+    color: $jumbo;
+  }
 }
 
 .row {
@@ -89,27 +163,85 @@ a {
   header {
     display: none;
   }
+  footer {
+    background: none;
+  }
   .homelogin {
     position: fixed;
     top: 1rem;
     right: 1rem;
   }
   .homecontent {
+    h1{
+      color: black;
+      font-family: 'Mr Dafoe', cursive;
+      font-size: 5em;
+    }
     .searchbox {
       margin: 0.5em auto;
       text-align: center;
     }
   }
+  .button {
+    background-color: $pearl-bush;
+    color: $pinecone;
+    &:hover {
+      background-color: $pinecone;
+      color: $pearl-bush;
+    }
+    &:active {
+      background-color: $pinecone;
+      color: $pearl-bush;
+    }
+    &:focus {
+      background-color: $pinecone;
+      color: $pearl-bush;
+      outline-color: $pearl-bush;
+    }
+  }
 }
 
 .search {
-  .searchbox {
-    display: inline-block;
-  }
   .column:last-child:not(:first-child), .columns:last-child:not(:first-child) {
     float: left;
   }
   .product-card {
     margin-top: 1rem;
+  }
+  .pages {
+    clear: both;
+    .current-page {
+      display: inline-block;
+      background-color: $pinecone;
+      color: $pearl-bush;
+      width: 1.5em;
+    }
+    a {
+      &:hover {
+        background-color: $silver;
+        color: $pinecone;
+      }
+      &:active {
+        background-color: $silver;
+        color: $pinecone;
+      }
+      &:focus {
+        background-color: $silver;
+        color: $pinecone;
+      }
+      .page-link {
+        display: inline-block;
+        width: 1.5em;
+      }
+    }
+  }
+}
+
+.recipe {
+  section {
+    margin-bottom: 5vh;
+  }
+  .imageingredients {
+    margin-top: 5vh;
   }
 }

@@ -1,0 +1,11 @@
+<div class="pages text-center" %>
+  <%= link_to "First", index_recipes_path({search: @search, page: 1}) %>
+  <% (@min_page..@max_page).to_a.each do |page| %>
+    <% if page == @page %>
+      <span class="current-page"><%= page %></span>
+    <% else %>
+      <%= link_to page, index_recipes_path({search: @search, page: page}, class: 'page-link') %>
+    <% end %>
+  <% end %>
+  <%= link_to "Last", index_recipes_path({search: @search, page: @last_page}) %>
+</div>

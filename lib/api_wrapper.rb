@@ -42,6 +42,7 @@ class ApiWrapper
       api_params["recipe"]["url"],
       api_params["recipe"]["ingredientLines"],
       api_params["recipe"]["totalNutrients"],
+      api_params["recipe"]["source"],
       {
         image: api_params["recipe"]["image"]
       }
@@ -56,6 +57,7 @@ class ApiWrapper
       api_params["url"],
       api_params["ingredientLines"],
       api_params["totalNutrients"],
+      api_params["source"],
       {
         image: api_params["image"]
       }
