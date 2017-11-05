@@ -1,5 +1,4 @@
 require 'httparty'
-require 'awesome_print'
 
 class ApiWrapper
   BASE_URL = "https://api.edamam.com/"
